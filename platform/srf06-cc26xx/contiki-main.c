@@ -117,7 +117,7 @@ set_rf_params(void)
   NETSTACK_RADIO.set_object(RADIO_PARAM_64BIT_ADDR, ext_addr, 8);
 
   NETSTACK_RADIO.get_value(RADIO_PARAM_CHANNEL, &val);
-  printf(" RF: Channel %d\n", val);
+  printf(" RF: Channel %d\r\n", val);
 
 #if STARTUP_CONF_VERBOSE
   {
@@ -126,13 +126,13 @@ set_rf_params(void)
     for(i = 0; i < LINKADDR_SIZE - 1; i++) {
       printf("%02x:", linkaddr_node_addr.u8[i]);
     }
-    printf("%02x\n", linkaddr_node_addr.u8[i]);
+    printf("%02x\r\n", linkaddr_node_addr.u8[i]);
   }
 #endif
 
   /* also set the global node id */
   node_id = short_addr;
-  printf(" Node ID: %d\n", node_id);
+  printf(" Node ID: %d\r\n", node_id);
 }
 /*---------------------------------------------------------------------------*/
 /**
@@ -187,11 +187,11 @@ main(void)
 
   serial_line_init();
 
-  printf("Starting " CONTIKI_VERSION_STRING "\n");
-  printf("With DriverLib v%u.%u\n", DRIVERLIB_RELEASE_GROUP,
+  printf("Starting " CONTIKI_VERSION_STRING "\r\n");
+  printf("With DriverLib v%u.%u\r\n", DRIVERLIB_RELEASE_GROUP,
          DRIVERLIB_RELEASE_BUILD);
-  printf(BOARD_STRING "\n");
-  printf("IEEE 802.15.4: %s, Sub-GHz: %s, BLE: %s, Prop: %s\n",
+  printf(BOARD_STRING "\r\n");
+  printf("IEEE 802.15.4: %s, Sub-GHz: %s, BLE: %s, Prop: %s\r\n",
          ti_lib_chipinfo_supports_ieee_802_15_4() == true ? "Yes" : "No",
          ti_lib_chipinfo_chip_family_is_cc13xx() == true ? "Yes" : "No",
          ti_lib_chipinfo_supports_ble() == true ? "Yes" : "No",
@@ -206,9 +206,9 @@ main(void)
   fade(LEDS_YELLOW);
 
   printf(" Net: ");
-  printf("%s\n", NETSTACK_NETWORK.name);
+  printf("%s\r\n", NETSTACK_NETWORK.name);
   printf(" MAC: ");
-  printf("%s\n", NETSTACK_MAC.name);
+  printf("%s\r\n", NETSTACK_MAC.name);
   printf(" RDC: ");
   printf("%s", NETSTACK_RDC.name);
 
@@ -216,7 +216,7 @@ main(void)
     printf(", Channel Check Interval: %u ticks",
            NETSTACK_RDC.channel_check_interval());
   }
-  printf("\n");
+  printf("\r\n");
 
   netstack_init();
 
